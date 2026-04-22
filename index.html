@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plástica — Cuadernos Digitales</title>
+<title>Plastica - Cuadernos Digitales</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -27,329 +27,139 @@
     --radius: 12px;
     --radius-sm: 8px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; }
 
   /* HEADER */
-  header {
-    background: var(--text);
-    color: #fff;
-    padding: 2.5rem 2rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  header::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    border: 40px solid rgba(255,255,255,0.04);
-  }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -20px; left: 30%;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    border: 25px solid rgba(255,255,255,0.04);
-  }
-  .header-inner { max-width: 960px; margin: 0 auto; }
-  .header-eyebrow {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,0.5);
-    margin-bottom: 8px;
-  }
-  header h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 400;
-    line-height: 1.15;
-    color: #fff;
-  }
+  header { background: var(--text); color: #fff; padding: 2.5rem 2rem 2rem; position: relative; overflow: hidden; }
+  header::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; border: 40px solid rgba(255,255,255,0.04); }
+  header::after { content: ''; position: absolute; bottom: -20px; left: 30%; width: 120px; height: 120px; border-radius: 50%; border: 25px solid rgba(255,255,255,0.04); }
+  .header-inner { max-width: 980px; margin: 0 auto; }
+  .header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 5vw, 44px); font-weight: 400; line-height: 1.15; color: #fff; }
   header h1 em { font-style: italic; color: rgba(255,255,255,0.6); }
-  .header-sub {
-    margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.5);
-  }
+  .header-sub { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.5); }
 
-  /* NAV TABS */
-  nav {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 100;
-  }
-  .nav-inner {
-    max-width: 960px; margin: 0 auto;
-    display: flex; gap: 0; overflow-x: auto;
-    scrollbar-width: none;
-  }
+  /* NAV */
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 980px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
   .nav-inner::-webkit-scrollbar { display: none; }
-  .tab {
-    padding: 14px 22px;
-    font-size: 13px; font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    border-bottom: 2.5px solid transparent;
-    white-space: nowrap;
-    transition: color 0.15s, border-color 0.15s;
-    background: none; border-top: none; border-left: none; border-right: none;
-    font-family: 'DM Sans', sans-serif;
-  }
+  .tab { padding: 14px 20px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; border-bottom: 2.5px solid transparent; white-space: nowrap; transition: color 0.15s, border-color 0.15s; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
   .tab:hover { color: var(--text); }
   .tab.active { color: var(--text); border-bottom-color: var(--text); }
   .tab[data-year="1"].active { color: var(--y1); border-bottom-color: var(--y1); }
   .tab[data-year="2"].active { color: var(--y2); border-bottom-color: var(--y2); }
   .tab[data-year="3"].active { color: var(--y3); border-bottom-color: var(--y3); }
   .tab[data-year="5"].active { color: var(--y5); border-bottom-color: var(--y5); }
+  .tab-admin { margin-left: auto; color: var(--muted) !important; font-size: 12px !important; }
 
   /* MAIN */
-  main { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-
-  /* SECTIONS */
+  main { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   .year-section { display: none; }
   .year-section.active { display: block; }
 
   /* YEAR HERO */
-  .year-hero {
-    display: flex; align-items: center; gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .year-badge {
-    width: 64px; height: 64px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px; font-weight: 400;
-    flex-shrink: 0;
-  }
-  .year-hero-text h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px; font-weight: 400;
-  }
+  .year-hero { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1.5rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); flex-wrap: wrap; }
+  .year-badge { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; flex-shrink: 0; }
+  .year-hero-text h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; }
   .year-hero-text p { font-size: 13px; color: var(--muted); margin-top: 4px; }
-  .infografia-btn {
-    margin-left: auto;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px; font-weight: 500;
-    cursor: pointer;
-    border: 1px solid;
-    background: none;
-    font-family: 'DM Sans', sans-serif;
-    transition: opacity 0.15s;
-    text-decoration: none;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
+  .infografia-btn { margin-left: auto; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid; background: none; font-family: 'DM Sans', sans-serif; transition: opacity 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
   .infografia-btn:hover { opacity: 0.75; }
 
-  /* TRIMESTRE GROUPS */
+  /* TRIMESTRE */
   .trim-group { margin-bottom: 2.5rem; }
-  .trim-label {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .trim-label::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
+  .trim-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .trim-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* CARDS GRID */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-  }
+  /* CARDS */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; text-align: left; font-family: 'DM Sans', sans-serif; width: 100%; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .card-type { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; padding: 3px 8px; border-radius: 10px; display: inline-block; }
+  .card h3 { font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--text); }
+  .card-meta { font-size: 11px; color: var(--muted); margin-top: 6px; }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
-    text-align: left;
-    font-family: 'DM Sans', sans-serif;
-    width: 100%;
-  }
-  .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  }
+  /* FORMS SECTION */
+  .forms-section { margin-bottom: 2.5rem; }
+  .forms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; text-align: left; font-family: 'DM Sans', sans-serif; width: 100%; text-decoration: none; display: block; }
+  .form-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .form-card h3 { font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--text); margin-top: 8px; }
+  .form-card p { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .form-tag { font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: 10px; display: inline-block; background: #FFF3E0; color: #E65100; letter-spacing: 0.06em; }
+  .div-badge { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 8px; background: #F3F3F0; color: var(--muted); margin-left: 6px; }
 
-  .card-type {
-    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; margin-bottom: 8px;
-    padding: 3px 8px; border-radius: 10px;
-    display: inline-block;
-  }
-  .card h3 {
-    font-size: 13px; font-weight: 500; line-height: 1.4;
-    color: var(--text);
-  }
-  .card-meta {
-    font-size: 11px; color: var(--muted); margin-top: 6px;
-  }
-
-  /* VIDEO CARDS */
-  .card.video-card { position: relative; }
-  .play-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 11px; font-weight: 500;
-    margin-top: 8px; color: var(--muted);
-  }
-  .play-icon {
-    width: 20px; height: 20px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 8px;
-  }
-
-  /* VIEWER */
-  #viewer-overlay {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(20,20,18,0.75);
-    backdrop-filter: blur(4px);
-    align-items: center; justify-content: center;
-    padding: 1rem;
-  }
-  #viewer-overlay.open { display: flex; }
-
-  #viewer-box {
-    background: var(--surface);
-    border-radius: var(--radius);
-    width: 100%; max-width: 900px;
-    height: 90vh;
-    display: flex; flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-  }
-
-  #viewer-header {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  #viewer-title {
-    flex: 1; font-size: 14px; font-weight: 500;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  #viewer-close {
-    width: 32px; height: 32px; border-radius: 50%;
-    border: 1px solid var(--border);
-    background: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; color: var(--muted);
-    font-family: sans-serif;
-    flex-shrink: 0;
-    transition: background 0.15s;
-  }
-  #viewer-close:hover { background: var(--bg); }
-  #viewer-open-link {
-    font-size: 12px; color: var(--muted);
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-  #viewer-open-link:hover { background: var(--bg); }
-
-  #viewer-frame {
-    flex: 1; border: none; width: 100%;
-  }
-
-  /* ESPECIALES */
-  .special-section { margin-top: 2.5rem; }
-  .special-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
-  }
-  .special-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    text-align: left;
-    font-family: 'DM Sans', sans-serif;
-    width: 100%;
-  }
-  .special-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  }
+  /* SPECIAL */
+  .special-section { margin-top: 2rem; }
+  .special-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .special-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; text-align: left; font-family: 'DM Sans', sans-serif; width: 100%; }
+  .special-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
   .special-card h3 { font-size: 14px; font-weight: 500; margin-top: 8px; }
   .special-card p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .play-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; margin-top: 8px; color: var(--muted); }
+  .play-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; }
 
   /* INICIO */
-  #section-inicio .welcome {
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    margin-bottom: 2rem;
-  }
-  #section-inicio .welcome h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 24px; font-weight: 400;
-    margin-bottom: 10px;
-  }
+  #section-inicio .welcome { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 2rem; margin-bottom: 2rem; }
+  #section-inicio .welcome h2 { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin-bottom: 10px; }
   #section-inicio .welcome p { color: var(--muted); line-height: 1.7; }
-  .year-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
-  }
-  .year-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem 1.25rem;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    text-align: left;
-    font-family: 'DM Sans', sans-serif;
-    width: 100%;
-  }
-  .year-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-  .year-card .num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 36px; font-weight: 400;
-    line-height: 1; margin-bottom: 10px;
-  }
+  .year-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .year-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.25rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; text-align: left; font-family: 'DM Sans', sans-serif; width: 100%; }
+  .year-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .year-card .num { font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 400; line-height: 1; margin-bottom: 10px; }
   .year-card h3 { font-size: 14px; font-weight: 500; }
   .year-card p { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .year-card .arrow {
-    margin-top: 16px; font-size: 18px;
-    display: block;
-  }
+  .year-card .arrow { margin-top: 16px; font-size: 18px; display: block; }
+
+  /* VIEWER */
+  #viewer-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(20,20,18,0.75); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 1rem; }
+  #viewer-overlay.open { display: flex; }
+  #viewer-box { background: var(--surface); border-radius: var(--radius); width: 100%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.3); }
+  #viewer-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  #viewer-title { flex: 1; font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #viewer-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--muted); font-family: sans-serif; flex-shrink: 0; transition: background 0.15s; }
+  #viewer-close:hover { background: var(--bg); }
+  #viewer-open-link { font-size: 12px; color: var(--muted); text-decoration: none; padding: 6px 12px; border: 1px solid var(--border); border-radius: 20px; white-space: nowrap; transition: background 0.15s; }
+  #viewer-open-link:hover { background: var(--bg); }
+  #viewer-frame { flex: 1; border: none; width: 100%; }
+
+  /* ADMIN PANEL */
+  #admin-overlay { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(20,20,18,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem; }
+  #admin-overlay.open { display: flex; }
+  #admin-box { background: var(--surface); border-radius: var(--radius); width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  #admin-header { display: flex; align-items: center; gap: 12px; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); z-index: 1; }
+  #admin-header h2 { font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; flex: 1; }
+  #admin-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 16px; color: var(--muted); }
+  #admin-body { padding: 1.5rem; }
+  .admin-login { text-align: center; padding: 2rem 0; }
+  .admin-login p { color: var(--muted); font-size: 14px; margin-bottom: 1rem; }
+  .admin-login input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; margin-bottom: 12px; background: var(--bg); }
+  .admin-login input:focus { outline: none; border-color: #888; }
+  .btn-primary { padding: 10px 24px; background: var(--text); color: #fff; border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.8; }
+  .admin-error { color: #C4390A; font-size: 13px; margin-top: 8px; }
+  .admin-section { margin-bottom: 2rem; }
+  .admin-section h3 { font-size: 14px; font-weight: 500; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .admin-form { display: flex; flex-direction: column; gap: 10px; }
+  .admin-form select, .admin-form input, .admin-form textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 13px; background: var(--bg); }
+  .admin-form select:focus, .admin-form input:focus, .admin-form textarea:focus { outline: none; border-color: #888; }
+  .admin-form textarea { resize: vertical; min-height: 80px; }
+  .admin-form label { font-size: 12px; color: var(--muted); margin-bottom: 2px; display: block; }
+  .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn-success { padding: 10px 20px; background: #0F7A52; color: #fff; border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+  .btn-success:hover { opacity: 0.85; }
+  .admin-list { margin-top: 8px; }
+  .admin-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 6px; font-size: 13px; }
+  .admin-item span { flex: 1; }
+  .btn-del { padding: 4px 10px; background: #FDEEE9; color: #C4390A; border: 1px solid #C4390A; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .admin-notice { background: #EBF0FD; color: #1B4FD8; font-size: 12px; padding: 10px 14px; border-radius: var(--radius-sm); margin-bottom: 1rem; line-height: 1.5; }
 
   @media (max-width: 600px) {
     header { padding: 1.5rem 1rem 1.25rem; }
     main { padding: 1.25rem 1rem 3rem; }
-    .tab { padding: 12px 14px; font-size: 12px; }
+    .tab { padding: 12px 12px; font-size: 12px; }
     .cards { grid-template-columns: 1fr 1fr; }
-    .year-card .num { font-size: 28px; }
+    .admin-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -357,455 +167,437 @@
 
 <header>
   <div class="header-inner">
-    <div class="header-eyebrow">Área Artística</div>
-    <h1>Plástica <em>&amp;</em> Visual</h1>
-    <p class="header-sub">Cuadernos digitales — 1°, 2°, 3° y 5° año</p>
+    <div class="header-eyebrow">Area Artistica</div>
+    <h1>Plastica <em>&amp;</em> Visual</h1>
+    <p class="header-sub">Cuadernos digitales - 1, 2, 3 y 5 ano</p>
   </div>
 </header>
 
 <nav>
   <div class="nav-inner">
     <button class="tab active" data-year="0" onclick="showYear('inicio', this)">Inicio</button>
-    <button class="tab" data-year="1" onclick="showYear('1', this)">1° año</button>
-    <button class="tab" data-year="2" onclick="showYear('2', this)">2° año</button>
-    <button class="tab" data-year="3" onclick="showYear('3', this)">3° año</button>
-    <button class="tab" data-year="5" onclick="showYear('5', this)">5° año</button>
+    <button class="tab" data-year="1" onclick="showYear('1', this)">1 ano</button>
+    <button class="tab" data-year="2" onclick="showYear('2', this)">2 ano</button>
+    <button class="tab" data-year="3" onclick="showYear('3', this)">3 ano</button>
+    <button class="tab" data-year="5" onclick="showYear('5', this)">5 ano</button>
+    <button class="tab tab-admin" data-year="0" onclick="openAdmin()">Admin</button>
   </div>
 </nav>
 
 <main>
 
-  <!-- INICIO -->
-  <section id="section-inicio" class="year-section active">
-    <div class="welcome">
-      <h2>Bienvenidos al aula virtual de Plástica</h2>
-      <p>Aquí encontrarás todos los cuadernos digitales, trabajos prácticos y recursos del programa de Plástica. Seleccioná tu año para acceder a los materiales por trimestre.</p>
+<!-- INICIO -->
+<section id="section-inicio" class="year-section active">
+  <div class="welcome">
+    <h2>Bienvenidos al aula virtual de Plastica</h2>
+    <p>Aqui encontraras todos los cuadernos digitales, trabajos practicos, evaluaciones y recursos del programa de Plastica. Selecciona tu ano para acceder a los materiales por trimestre.</p>
+  </div>
+  <div class="year-grid">
+    <button class="year-card" onclick="showYear('1', document.querySelector('[data-year=\'1\']'))">
+      <div class="num" style="color:var(--y1)">1</div>
+      <h3>Primer ano</h3>
+      <p>Punto - Linea - Color - Perspectiva - Origami</p>
+      <span class="arrow" style="color:var(--y1)">&#8594;</span>
+    </button>
+    <button class="year-card" onclick="showYear('2', document.querySelector('[data-year=\'2\']'))">
+      <div class="num" style="color:var(--y2)">2</div>
+      <h3>Segundo ano</h3>
+      <p>Figura - Collage - Espacio - Tipografia - Perspectiva</p>
+      <span class="arrow" style="color:var(--y2)">&#8594;</span>
+    </button>
+    <button class="year-card" onclick="showYear('3', document.querySelector('[data-year=\'3\']'))">
+      <div class="num" style="color:var(--y3)">3</div>
+      <h3>Tercer ano</h3>
+      <p>Simetria - Rostro - Cuerpo - Ilusion optica - Morphing</p>
+      <span class="arrow" style="color:var(--y3)">&#8594;</span>
+    </button>
+    <button class="year-card" onclick="showYear('5', document.querySelector('[data-year=\'5\']'))">
+      <div class="num" style="color:var(--y5)">5</div>
+      <h3>Quinto ano</h3>
+      <p>Diseno digital - Marca - Stop Motion - Cuadro digital</p>
+      <span class="arrow" style="color:var(--y5)">&#8594;</span>
+    </button>
+  </div>
+</section>
+
+<!-- 1 ANO -->
+<section id="section-1" class="year-section">
+  <div class="year-hero">
+    <div class="year-badge" style="background:var(--y1-light);color:var(--y1)">1</div>
+    <div class="year-hero-text">
+      <h2>Primer ano</h2>
+      <p>Lenguaje visual - Elementos basicos - Color - Perspectiva</p>
     </div>
-    <div class="year-grid">
-      <button class="year-card" onclick="showYear('1', document.querySelector('[data-year=\'1\']'))">
-        <div class="num" style="color:var(--y1)">1°</div>
-        <h3>Primer año</h3>
-        <p>Punto · Línea · Color · Perspectiva · Origami</p>
-        <span class="arrow" style="color:var(--y1)">→</span>
+    <a href="https://drive.google.com/file/d/1z1gsQMfxuC1PLDSMYzaeWq-Thn92VNTN/view" target="_blank" class="infografia-btn" style="color:var(--y1);border-color:var(--y1-mid)">Mapa visual</a>
+  </div>
+
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y1)">1er trimestre</div>
+    <div class="cards" id="cards-1-t1">
+      <button class="card" onclick="openViewer('El Punto','https://drive.google.com/file/d/1aEqv2X02vhjgfiL5wGIS4N6WE6wProIG/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>El Punto</h3><p class="card-meta">Elemento basico del lenguaje visual</p>
       </button>
-      <button class="year-card" onclick="showYear('2', document.querySelector('[data-year=\'2\']'))">
-        <div class="num" style="color:var(--y2)">2°</div>
-        <h3>Segundo año</h3>
-        <p>Figura · Collage · Espacio · Tipografía · Perspectiva</p>
-        <span class="arrow" style="color:var(--y2)">→</span>
+      <button class="card" onclick="openViewer('La Forma','https://drive.google.com/file/d/1iB8GLUXzMTd1Rm2OfUAZEyH72jbWBYIq/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>La Forma</h3><p class="card-meta">Formas geometricas y organicas</p>
       </button>
-      <button class="year-card" onclick="showYear('3', document.querySelector('[data-year=\'3\']'))">
-        <div class="num" style="color:var(--y3)">3°</div>
-        <h3>Tercer año</h3>
-        <p>Simetría · Rostro · Cuerpo · Ilusión óptica · Morphing</p>
-        <span class="arrow" style="color:var(--y3)">→</span>
+      <button class="card" onclick="openViewer('La Linea','https://drive.google.com/file/d/1cx-GHGZ2_rNzmvmPHH9H6ilcHnzvwvE7/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>La Linea</h3><p class="card-meta">Tipos y usos de la linea</p>
       </button>
-      <button class="year-card" onclick="showYear('5', document.querySelector('[data-year=\'5\']'))">
-        <div class="num" style="color:var(--y5)">5°</div>
-        <h3>Quinto año</h3>
-        <p>Diseño digital · Marca · Stop Motion · Cuadro digital</p>
-        <span class="arrow" style="color:var(--y5)">→</span>
+      <button class="card" onclick="openViewer('Origami','https://drive.google.com/file/d/1K7V4HY3hFljJs6ZyZeRDabae03I9E2jy/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>Origami</h3><p class="card-meta">Arte del papel plegado</p>
+      </button>
+      <button class="card" onclick="openViewer('Ritmo','https://drive.google.com/file/d/1t8cFOuLAh65_Ka3_HIO_GuD5Ucq9KCvj/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>Ritmo</h3><p class="card-meta">Repeticion y ritmo visual</p>
       </button>
     </div>
-  </section>
+  </div>
 
-  <!-- 1° AÑO -->
-  <section id="section-1" class="year-section">
-    <div class="year-hero">
-      <div class="year-badge" style="background:var(--y1-light); color:var(--y1)">1°</div>
-      <div class="year-hero-text">
-        <h2>Primer año</h2>
-        <p>Lenguaje visual · Elementos básicos · Color · Perspectiva</p>
-      </div>
-      <a href="https://drive.google.com/file/d/1z1gsQMfxuC1PLDSMYzaeWq-Thn92VNTN/view" target="_blank" class="infografia-btn" style="color:var(--y1); border-color:var(--y1-mid)">
-        🗺 Mapa visual
-      </a>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y1)">2do trimestre</div>
+    <div class="cards" id="cards-1-t2">
+      <button class="card" onclick="openViewer('Linea del Horizonte','https://drive.google.com/file/d/1O-s-7Uz5iGHzbgJHymgQ3jPNAC7cY6qc/preview')" style="border-top:3px solid var(--y1-mid)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>Linea del Horizonte</h3><p class="card-meta">Perspectiva y profundidad</p>
+      </button>
+      <button class="card" onclick="openViewer('Punto de Fuga','https://drive.google.com/file/d/1vzeqFvRCsmDcyzZP9Ytf6bLnop2Yjwo-/preview')" style="border-top:3px solid var(--y1-mid)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>Punto de Fuga</h3><p class="card-meta">Perspectiva con punto de fuga</p>
+      </button>
+      <button class="card" onclick="openViewer('Textura','https://drive.google.com/file/d/1ivW5y2Nx6OCalaVD4CwdrBTCbse-D1Sp/preview')" style="border-top:3px solid var(--y1-mid)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>Textura</h3><p class="card-meta">Texturas visuales y tactiles</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y1)">1er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('El Punto','https://drive.google.com/file/d/1aEqv2X02vhjgfiL5wGIS4N6WE6wProIG/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>El Punto</h3>
-          <p class="card-meta">Elemento básico del lenguaje visual</p>
-        </button>
-        <button class="card" onclick="openViewer('La Forma','https://drive.google.com/file/d/1iB8GLUXzMTd1Rm2OfUAZEyH72jbWBYIq/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>La Forma</h3>
-          <p class="card-meta">Formas geométricas y orgánicas</p>
-        </button>
-        <button class="card" onclick="openViewer('La Línea','https://drive.google.com/file/d/1cx-GHGZ2_rNzmvmPHH9H6ilcHnzvwvE7/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>La Línea</h3>
-          <p class="card-meta">Tipos y usos de la línea</p>
-        </button>
-        <button class="card" onclick="openViewer('Origami','https://drive.google.com/file/d/1K7V4HY3hFljJs6ZyZeRDabae03I9E2jy/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>Origami</h3>
-          <p class="card-meta">Arte del papel plegado</p>
-        </button>
-        <button class="card" onclick="openViewer('Ritmo','https://drive.google.com/file/d/1t8cFOuLAh65_Ka3_HIO_GuD5Ucq9KCvj/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>Ritmo</h3>
-          <p class="card-meta">Repetición y ritmo visual</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y1)">3er trimestre</div>
+    <div class="cards" id="cards-1-t3">
+      <button class="card" onclick="openViewer('El Color','https://drive.google.com/file/d/1_R9i5w0HqqyroSQt-etxv3HOyxAG9emM/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>El Color</h3><p class="card-meta">Teoria del color</p>
+      </button>
+      <button class="card" onclick="openViewer('Escala de Valores','https://drive.google.com/file/d/1uvB-R1RX2Ti019pojnrEX3vzEgvgRf9D/preview')" style="border-top:3px solid var(--y1)">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
+        <h3>Escala de Valores</h3><p class="card-meta">Luz, sombra y escala tonal</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y1)">2do trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Línea del Horizonte','https://drive.google.com/file/d/1O-s-7Uz5iGHzbgJHymgQ3jPNAC7cY6qc/preview')" style="border-top:3px solid var(--y1-mid)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>Línea del Horizonte</h3>
-          <p class="card-meta">Perspectiva y profundidad</p>
-        </button>
-        <button class="card" onclick="openViewer('Punto de Fuga','https://drive.google.com/file/d/1vzeqFvRCsmDcyzZP9Ytf6bLnop2Yjwo-/preview')" style="border-top:3px solid var(--y1-mid)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF · TPP</span>
-          <h3>Punto de Fuga</h3>
-          <p class="card-meta">Perspectiva con punto de fuga</p>
-        </button>
-        <button class="card" onclick="openViewer('Textura','https://drive.google.com/file/d/1ivW5y2Nx6OCalaVD4CwdrBTCbse-D1Sp/preview')" style="border-top:3px solid var(--y1-mid)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>Textura</h3>
-          <p class="card-meta">Texturas visuales y táctiles</p>
-        </button>
-      </div>
+  <div class="forms-section">
+    <div class="trim-label" style="color:#E65100">Evaluaciones por division</div>
+    <div class="forms-grid">
+      <a href="https://forms.gle/bdRaiCXRTJWA8CMA7" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>El Punto</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/FDDQbGN4PYgTweWa9" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>El Punto</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/KDoVKvKFBQB3nNVS7" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>La Linea</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/uLu1CCiAS7RqaYXq6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>La Linea</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/bD8VNeYJLdJSzxF38" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>La Forma</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/xQTQwZBkX5oLfn8p8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>La Forma</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/bPpQ7YWmgDXQBfuE9" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>El Ritmo</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/Unejh5hdh5uyJSxV9" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>El Ritmo</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/UU2TBnfsKYJHmvqo6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>La Textura</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/LAYAAa53Je6eGduQ7" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>La Textura</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/NQqmbfNkdZeZ2Nij8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>Punto de Fuga</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/9H5HSkRxNCnAuZak6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Punto de Fuga</h3><p>Evaluacion 2 division</p></a>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y1)">3er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('El Color','https://drive.google.com/file/d/1_R9i5w0HqqyroSQt-etxv3HOyxAG9emM/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>El Color</h3>
-          <p class="card-meta">Teoría del color actualizada</p>
-        </button>
-        <button class="card" onclick="openViewer('Escala de Valores','https://drive.google.com/file/d/1uvB-R1RX2Ti019pojnrEX3vzEgvgRf9D/preview')" style="border-top:3px solid var(--y1)">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">PDF</span>
-          <h3>Escala de Valores</h3>
-          <p class="card-meta">Luz, sombra y escala tonal</p>
-        </button>
-      </div>
+  <div class="special-section">
+    <div class="trim-label">Recursos adicionales</div>
+    <div class="special-grid">
+      <button class="special-card" onclick="openViewer('Guia de Estudio - 1 ano','https://drive.google.com/file/d/1JC3lFqvkJuAPPN_A240O2VhCdYUyHOew/preview')">
+        <span class="card-type" style="background:var(--y1-light);color:var(--y1)">Guia</span>
+        <h3>Guia de Estudio</h3><p>Primer ano completo</p>
+      </button>
+      <button class="special-card" onclick="openViewer('Video - 1 ano Plastica','https://drive.google.com/file/d/16rwrDqOjl4WKru4N_klCoPv5NVOqFv2d/preview')">
+        <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
+        <h3>Video presentacion</h3><p>1 ano Plastica</p>
+        <span class="play-badge"><span class="play-icon" style="background:#E65100;color:#fff">&#9658;</span>Reproducir</span>
+      </button>
     </div>
+  </div>
+</section>
 
-    <div class="special-section">
-      <div class="trim-label">Recursos adicionales</div>
-      <div class="special-grid">
-        <button class="special-card" onclick="openViewer('Evaluaciones — 1° año','https://drive.google.com/file/d/1Ddm-11WUs7lYwSj7pQWt5BrFMRg-mnXa/preview')">
-          <span class="card-type" style="background:#FFF8E1;color:#F57F17">Evaluación</span>
-          <h3>Evaluaciones</h3>
-          <p>Criterios y rúbricas</p>
-        </button>
-        <button class="special-card" onclick="openViewer('Guía de Estudio — 1° año','https://drive.google.com/file/d/1JC3lFqvkJuAPPN_A240O2VhCdYUyHOew/preview')">
-          <span class="card-type" style="background:var(--y1-light);color:var(--y1)">Guía</span>
-          <h3>Guía de Estudio</h3>
-          <p>Primer año completo</p>
-        </button>
-        <button class="special-card video-card" onclick="openViewer('Video — 1° año Plástica','https://drive.google.com/file/d/16rwrDqOjl4WKru4N_klCoPv5NVOqFv2d/preview')">
-          <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
-          <h3>Video presentación</h3>
-          <p>1° año Plástica</p>
-          <span class="play-badge">
-            <span class="play-icon" style="background:#E65100;color:#fff">▶</span>
-            Reproducir
-          </span>
-        </button>
-      </div>
+<!-- 2 ANO -->
+<section id="section-2" class="year-section">
+  <div class="year-hero">
+    <div class="year-badge" style="background:var(--y2-light);color:var(--y2)">2</div>
+    <div class="year-hero-text">
+      <h2>Segundo ano</h2>
+      <p>Figura y fondo - Espacio - Tipografia - Perspectiva</p>
     </div>
-  </section>
+    <a href="https://drive.google.com/file/d/1uZqiCE9QoC1e8mVWhTVaH_ZyXbXDjUmK/view" target="_blank" class="infografia-btn" style="color:var(--y2);border-color:var(--y2-mid)">Infografia</a>
+  </div>
 
-  <!-- 2° AÑO -->
-  <section id="section-2" class="year-section">
-    <div class="year-hero">
-      <div class="year-badge" style="background:var(--y2-light); color:var(--y2)">2°</div>
-      <div class="year-hero-text">
-        <h2>Segundo año</h2>
-        <p>Figura y fondo · Espacio · Tipografía · Perspectiva</p>
-      </div>
-      <a href="https://drive.google.com/file/d/1uZqiCE9QoC1e8mVWhTVaH_ZyXbXDjUmK/view" target="_blank" class="infografia-btn" style="color:var(--y2); border-color:var(--y2-mid)">
-        🗺 Infografía
-      </a>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y2)">1er trimestre</div>
+    <div class="cards" id="cards-2-t1">
+      <button class="card" onclick="openViewer('Figura y Fondo','https://drive.google.com/file/d/10ngtRccggpVZOn1ULV9RxF8_gTKV7d9n/preview')" style="border-top:3px solid var(--y2)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Figura y Fondo</h3><p class="card-meta">Relacion entre figura y fondo</p>
+      </button>
+      <button class="card" onclick="openViewer('Collage','https://drive.google.com/file/d/1rKndEHYhyGGM-BNq07_sH-by2kU8XbYo/preview')" style="border-top:3px solid var(--y2)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Collage</h3><p class="card-meta">Tecnica de composicion</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y2)">1er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Figura y Fondo','https://drive.google.com/file/d/10ngtRccggpVZOn1ULV9RxF8_gTKV7d9n/preview')" style="border-top:3px solid var(--y2)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Figura y Fondo</h3>
-          <p class="card-meta">Relación entre figura y fondo</p>
-        </button>
-        <button class="card" onclick="openViewer('Collage','https://drive.google.com/file/d/1rKndEHYhyGGM-BNq07_sH-by2kU8XbYo/preview')" style="border-top:3px solid var(--y2)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Collage</h3>
-          <p class="card-meta">Técnica de composición</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y2)">2do trimestre</div>
+    <div class="cards" id="cards-2-t2">
+      <button class="card" onclick="openViewer('Espacio y Volumen','https://drive.google.com/file/d/1Cxbil1UjZvNl3FUIcKkHeFe1gzDFOhuf/preview')" style="border-top:3px solid var(--y2-mid)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Espacio y Volumen</h3><p class="card-meta">Representacion espacial</p>
+      </button>
+      <button class="card" onclick="openViewer('Luces y Sombras','https://drive.google.com/file/d/1lc0Eyp2dXNslR_Q3dfuh4NJSI-Dq2o07/preview')" style="border-top:3px solid var(--y2-mid)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Luces y Sombras</h3><p class="card-meta">Claroscuro y volumen</p>
+      </button>
+      <button class="card" onclick="openViewer('Plano y Volumen','https://drive.google.com/file/d/14SyrEfiVbgjiD38KJnfeTOfE1Z_ZY2B8/preview')" style="border-top:3px solid var(--y2-mid)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Plano y Volumen</h3><p class="card-meta">Del plano a la tridimension</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y2)">2do trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Espacio y Volumen','https://drive.google.com/file/d/1Cxbil1UjZvNl3FUIcKkHeFe1gzDFOhuf/preview')" style="border-top:3px solid var(--y2-mid)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF · TPP</span>
-          <h3>Espacio y Volumen</h3>
-          <p class="card-meta">Representación espacial</p>
-        </button>
-        <button class="card" onclick="openViewer('Luces y Sombras','https://drive.google.com/file/d/1lc0Eyp2dXNslR_Q3dfuh4NJSI-Dq2o07/preview')" style="border-top:3px solid var(--y2-mid)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Luces y Sombras</h3>
-          <p class="card-meta">Claroscuro y volumen</p>
-        </button>
-        <button class="card" onclick="openViewer('Plano y Volumen','https://drive.google.com/file/d/14SyrEfiVbgjiD38KJnfeTOfE1Z_ZY2B8/preview')" style="border-top:3px solid var(--y2-mid)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Plano y Volumen</h3>
-          <p class="card-meta">Del plano a la tridimensión</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y2)">3er trimestre</div>
+    <div class="cards" id="cards-2-t3">
+      <button class="card" onclick="openViewer('Arte Tipografico','https://drive.google.com/file/d/1n9-Jk4XzBjvsVNMfBXJry6eKj6MJLmVO/preview')" style="border-top:3px solid var(--y2)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Arte Tipografico</h3><p class="card-meta">Tipografia como elemento visual</p>
+      </button>
+      <button class="card" onclick="openViewer('Tetraedro','https://drive.google.com/file/d/1svtDXDhmDzSu3KJdsakVUsL5huBHqwyi/preview')" style="border-top:3px solid var(--y2)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Tetraedro</h3><p class="card-meta">Solido geometrico</p>
+      </button>
+      <button class="card" onclick="openViewer('Perspectiva','https://drive.google.com/file/d/1BW9TpSvMRT8Xrf2lHhS0kg73xYmcbkqK/preview')" style="border-top:3px solid var(--y2)">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
+        <h3>Perspectiva</h3><p class="card-meta">Perspectiva avanzada</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y2)">3er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Arte Tipográfico','https://drive.google.com/file/d/1n9-Jk4XzBjvsVNMfBXJry6eKj6MJLmVO/preview')" style="border-top:3px solid var(--y2)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Arte Tipográfico</h3>
-          <p class="card-meta">Tipografía como elemento visual</p>
-        </button>
-        <button class="card" onclick="openViewer('Tetraedro','https://drive.google.com/file/d/1svtDXDhmDzSu3KJdsakVUsL5huBHqwyi/preview')" style="border-top:3px solid var(--y2)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Tetraedro</h3>
-          <p class="card-meta">Sólido geométrico</p>
-        </button>
-        <button class="card" onclick="openViewer('Perspectiva','https://drive.google.com/file/d/1BW9TpSvMRT8Xrf2lHhS0kg73xYmcbkqK/preview')" style="border-top:3px solid var(--y2)">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">PDF</span>
-          <h3>Perspectiva</h3>
-          <p class="card-meta">Perspectiva avanzada</p>
-        </button>
-      </div>
+  <div class="forms-section">
+    <div class="trim-label" style="color:#E65100">Evaluaciones por division</div>
+    <div class="forms-grid">
+      <a href="https://forms.gle/rU2C9SJ8FthY7SHz9" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Figura y Fondo</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/3rEVpu3W4mQKCtbZ8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Collage</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/9ovfxXeN6WBU6jUt7" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Plano y Volumen</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/AHVd6NXrHFqNh12L9" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Luz y Sombra</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/W3VF2zgaoTtsVReR6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Perspectiva</h3><p>Evaluacion 2 division</p></a>
     </div>
+  </div>
 
-    <div class="special-section">
-      <div class="trim-label">Recursos adicionales</div>
-      <div class="special-grid">
-        <button class="special-card" onclick="openViewer('Actividad Opcional 1 — 2° año','https://drive.google.com/file/d/1OXqakmhGwp-bRvNwjECV-mT-ckXICgYg/preview')">
-          <span class="card-type" style="background:var(--y2-light);color:var(--y2)">Opcional</span>
-          <h3>Actividad Opcional</h3>
-          <p>Material complementario</p>
-        </button>
-        <button class="special-card" onclick="openViewer('Evaluaciones — 2° año','https://drive.google.com/file/d/1bYtfqcpmrrzF3Py5-M48z8M9b_8vUsNK/preview')">
-          <span class="card-type" style="background:#FFF8E1;color:#F57F17">Evaluación</span>
-          <h3>Evaluaciones</h3>
-          <p>Criterios y rúbricas</p>
-        </button>
-        <button class="special-card video-card" onclick="openViewer('Video — 2° año Plástica','https://drive.google.com/file/d/1iZKobeXIJjBrwSmgWV5f8QLQdCMfvkKm/preview')">
-          <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
-          <h3>Video presentación</h3>
-          <p>2° año Plástica</p>
-          <span class="play-badge">
-            <span class="play-icon" style="background:#E65100;color:#fff">▶</span>
-            Reproducir
-          </span>
-        </button>
-      </div>
+  <div class="special-section">
+    <div class="trim-label">Recursos adicionales</div>
+    <div class="special-grid">
+      <button class="special-card" onclick="openViewer('Actividad Opcional - 2 ano','https://drive.google.com/file/d/1OXqakmhGwp-bRvNwjECV-mT-ckXICgYg/preview')">
+        <span class="card-type" style="background:var(--y2-light);color:var(--y2)">Opcional</span>
+        <h3>Actividad Opcional</h3><p>Material complementario</p>
+      </button>
+      <button class="special-card" onclick="openViewer('Video - 2 ano Plastica','https://drive.google.com/file/d/1iZKobeXIJjBrwSmgWV5f8QLQdCMfvkKm/preview')">
+        <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
+        <h3>Video presentacion</h3><p>2 ano Plastica</p>
+        <span class="play-badge"><span class="play-icon" style="background:#E65100;color:#fff">&#9658;</span>Reproducir</span>
+      </button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 3° AÑO -->
-  <section id="section-3" class="year-section">
-    <div class="year-hero">
-      <div class="year-badge" style="background:var(--y3-light); color:var(--y3)">3°</div>
-      <div class="year-hero-text">
-        <h2>Tercer año</h2>
-        <p>Simetría · Figura humana · Ilusión óptica · Morphing</p>
-      </div>
-      <a href="https://drive.google.com/file/d/1oDf-nB_bxQ7WWFi5-y0RE1h4XXMth5tn/view" target="_blank" class="infografia-btn" style="color:var(--y3); border-color:var(--y3-mid)">
-        🗺 Infografía
-      </a>
+<!-- 3 ANO -->
+<section id="section-3" class="year-section">
+  <div class="year-hero">
+    <div class="year-badge" style="background:var(--y3-light);color:var(--y3)">3</div>
+    <div class="year-hero-text">
+      <h2>Tercer ano</h2>
+      <p>Simetria - Figura humana - Ilusion optica - Morphing</p>
     </div>
+    <a href="https://drive.google.com/file/d/1oDf-nB_bxQ7WWFi5-y0RE1h4XXMth5tn/view" target="_blank" class="infografia-btn" style="color:var(--y3);border-color:var(--y3-mid)">Infografia</a>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y3)">1er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('La Simetría','https://drive.google.com/file/d/1lxx8Z2AnKOr0t26yYcNbhwOXM4ACQ8tx/preview')" style="border-top:3px solid var(--y3)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>La Simetría</h3>
-          <p class="card-meta">Simetría y equilibrio visual</p>
-        </button>
-        <button class="card" onclick="openViewer('Red Modular','https://drive.google.com/file/d/1sXkc2caVeNdh4MwOlByBIUdLdXOmtjNW/preview')" style="border-top:3px solid var(--y3)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Red Modular</h3>
-          <p class="card-meta">Módulos y retículas</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y3)">1er trimestre</div>
+    <div class="cards" id="cards-3-t1">
+      <button class="card" onclick="openViewer('La Simetria','https://drive.google.com/file/d/1lxx8Z2AnKOr0t26yYcNbhwOXM4ACQ8tx/preview')" style="border-top:3px solid var(--y3)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>La Simetria</h3><p class="card-meta">Simetria y equilibrio visual</p>
+      </button>
+      <button class="card" onclick="openViewer('Red Modular','https://drive.google.com/file/d/1sXkc2caVeNdh4MwOlByBIUdLdXOmtjNW/preview')" style="border-top:3px solid var(--y3)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Red Modular</h3><p class="card-meta">Modulos y reticulas</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y3)">2do trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Rostro Humano','https://drive.google.com/file/d/1kXB5iRX68_EBWNxJp8jdoT1BG_vCYL6r/preview')" style="border-top:3px solid var(--y3-mid)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Rostro Humano</h3>
-          <p class="card-meta">Proporciones del rostro</p>
-        </button>
-        <button class="card" onclick="openViewer('Cuerpo Humano','https://drive.google.com/file/d/1JbFkOhS5Y3_sqFGsxcgTXlXfkyRFGAyh/preview')" style="border-top:3px solid var(--y3-mid)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Cuerpo Humano</h3>
-          <p class="card-meta">Canon y proporciones corporales</p>
-        </button>
-        <button class="card" onclick="openViewer('Tangram','https://drive.google.com/file/d/1j4keQJ3BSeWtXqfuewt4YsOtqnKSrTC-/preview')" style="border-top:3px solid var(--y3-mid)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Tangram</h3>
-          <p class="card-meta">Composición geométrica</p>
-        </button>
-        <button class="card" onclick="openViewer('Tangram — Cuestionario','https://drive.google.com/file/d/1bZuTCv9jP0Sl52lxiVbaWddXuekDwR18/preview')" style="border-top:3px solid var(--y3-mid)">
-          <span class="card-type" style="background:#FFF8E1;color:#F57F17">Cuestionario</span>
-          <h3>Tangram — Cuestionario</h3>
-          <p class="card-meta">Actividad evaluativa</p>
-        </button>
-        <button class="card" onclick="openViewer('Tangram — Respuestas','https://drive.google.com/file/d/1UBvLkj10SUiZ4BC0KkhaZ7DJ_Ysi-rsB/preview')" style="border-top:3px solid var(--y3-mid)">
-          <span class="card-type" style="background:#E8F5E9;color:#2E7D32">Respuestas</span>
-          <h3>Tangram — Respuestas</h3>
-          <p class="card-meta">Clave de corrección</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y3)">2do trimestre</div>
+    <div class="cards" id="cards-3-t2">
+      <button class="card" onclick="openViewer('Rostro Humano','https://drive.google.com/file/d/1kXB5iRX68_EBWNxJp8jdoT1BG_vCYL6r/preview')" style="border-top:3px solid var(--y3-mid)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Rostro Humano</h3><p class="card-meta">Proporciones del rostro</p>
+      </button>
+      <button class="card" onclick="openViewer('Cuerpo Humano','https://drive.google.com/file/d/1JbFkOhS5Y3_sqFGsxcgTXlXfkyRFGAyh/preview')" style="border-top:3px solid var(--y3-mid)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Cuerpo Humano</h3><p class="card-meta">Canon y proporciones corporales</p>
+      </button>
+      <button class="card" onclick="openViewer('Tangram','https://drive.google.com/file/d/1j4keQJ3BSeWtXqfuewt4YsOtqnKSrTC-/preview')" style="border-top:3px solid var(--y3-mid)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Tangram</h3><p class="card-meta">Composicion geometrica</p>
+      </button>
+      <button class="card" onclick="openViewer('Tangram - Cuestionario','https://drive.google.com/file/d/1bZuTCv9jP0Sl52lxiVbaWddXuekDwR18/preview')" style="border-top:3px solid var(--y3-mid)">
+        <span class="card-type" style="background:#FFF8E1;color:#F57F17">Cuestionario</span>
+        <h3>Tangram - Cuestionario</h3><p class="card-meta">Actividad evaluativa</p>
+      </button>
+      <button class="card" onclick="openViewer('Tangram - Respuestas','https://drive.google.com/file/d/1UBvLkj10SUiZ4BC0KkhaZ7DJ_Ysi-rsB/preview')" style="border-top:3px solid var(--y3-mid)">
+        <span class="card-type" style="background:#E8F5E9;color:#2E7D32">Respuestas</span>
+        <h3>Tangram - Respuestas</h3><p class="card-meta">Clave de correccion</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y3)">3er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Ilusión Óptica','https://drive.google.com/file/d/1W2_wnx9teCNGOdotG1mNGdrGBm5c-QaD/preview')" style="border-top:3px solid var(--y3)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Ilusión Óptica</h3>
-          <p class="card-meta">Arte y percepción visual</p>
-        </button>
-        <button class="card" onclick="openViewer('Archivo Digital','https://drive.google.com/file/d/1sKs8fXNDqITEZfGsOZlBk7OEYE9Mf0Qj/preview')" style="border-top:3px solid var(--y3)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Archivo Digital</h3>
-          <p class="card-meta">Organización digital</p>
-        </button>
-        <button class="card" onclick="openViewer('Morphing','https://drive.google.com/file/d/1H3tDtHGboqG9KSSWHnuUIEuC1dlPfxQZ/preview')" style="border-top:3px solid var(--y3)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Morphing</h3>
-          <p class="card-meta">Transformación de imágenes</p>
-        </button>
-        <button class="card" onclick="openViewer('Stencil','https://drive.google.com/file/d/1aQcrplm0IljE-yXs-S9PVuSCb-6HZf-M/preview')" style="border-top:3px solid var(--y3)">
-          <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
-          <h3>Stencil</h3>
-          <p class="card-meta">Técnica de estarcido</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y3)">3er trimestre</div>
+    <div class="cards" id="cards-3-t3">
+      <button class="card" onclick="openViewer('Ilusion Optica','https://drive.google.com/file/d/1W2_wnx9teCNGOdotG1mNGdrGBm5c-QaD/preview')" style="border-top:3px solid var(--y3)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Ilusion Optica</h3><p class="card-meta">Arte y percepcion visual</p>
+      </button>
+      <button class="card" onclick="openViewer('Archivo Digital','https://drive.google.com/file/d/1sKs8fXNDqITEZfGsOZlBk7OEYE9Mf0Qj/preview')" style="border-top:3px solid var(--y3)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Archivo Digital</h3><p class="card-meta">Organizacion digital</p>
+      </button>
+      <button class="card" onclick="openViewer('Morphing','https://drive.google.com/file/d/1H3tDtHGboqG9KSSWHnuUIEuC1dlPfxQZ/preview')" style="border-top:3px solid var(--y3)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Morphing</h3><p class="card-meta">Transformacion de imagenes</p>
+      </button>
+      <button class="card" onclick="openViewer('Stencil','https://drive.google.com/file/d/1aQcrplm0IljE-yXs-S9PVuSCb-6HZf-M/preview')" style="border-top:3px solid var(--y3)">
+        <span class="card-type" style="background:var(--y3-light);color:var(--y3)">PDF</span>
+        <h3>Stencil</h3><p class="card-meta">Tecnica de estarcido</p>
+      </button>
     </div>
+  </div>
 
-    <div class="special-section">
-      <div class="trim-label">Recursos adicionales</div>
-      <div class="special-grid">
-        <button class="special-card" onclick="openViewer('Evaluaciones — 3° año','https://drive.google.com/file/d/18KKcm0vLH_UN-PmXbR1i0znjZshhWmJt/preview')">
-          <span class="card-type" style="background:#FFF8E1;color:#F57F17">Evaluación</span>
-          <h3>Evaluaciones</h3>
-          <p>Criterios y rúbricas</p>
-        </button>
-        <button class="special-card video-card" onclick="openViewer('El Poder de la Repetición','https://drive.google.com/file/d/1e5OhKjdVDpb_FXWZtYiflYUBAxdxNjwb/preview')">
-          <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
-          <h3>El Poder de la Repetición</h3>
-          <p>Video educativo</p>
-          <span class="play-badge">
-            <span class="play-icon" style="background:#E65100;color:#fff">▶</span>
-            Reproducir
-          </span>
-        </button>
-      </div>
+  <div class="forms-section">
+    <div class="trim-label" style="color:#E65100">Evaluaciones por division</div>
+    <div class="forms-grid">
+      <a href="https://forms.gle/R1PbFa5BHgXWmUjC7" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>Simetria</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/EB2DBDubLrHjPSKx6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Simetria</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/hoQfT7qcvYVgKkiK8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>Red Modular</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/jqZWgffrgAexAPBA8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Red Modular</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/zMYgPC6kdiLu7jYaA" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>Rostro Humano</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/eVBAFaRwn1ftAanp6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Rostro Humano</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/UoNGcpcU9vcsogx28" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>Cuerpo Humano</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/GZBeSajgBYPfjCgC8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Cuerpo Humano</h3><p>Evaluacion 2 division</p></a>
+      <a href="https://forms.gle/T2bACgogftAJSv7D9" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">1 div</span><h3>Percepcion</h3><p>Evaluacion 1 division</p></a>
+      <a href="https://forms.gle/rdN3DHEVrFHK2kgq5" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">2 div</span><h3>Percepcion</h3><p>Evaluacion 2 division</p></a>
     </div>
-  </section>
+  </div>
 
-  <!-- 5° AÑO -->
-  <section id="section-5" class="year-section">
-    <div class="year-hero">
-      <div class="year-badge" style="background:var(--y5-light); color:var(--y5)">5°</div>
-      <div class="year-hero-text">
-        <h2>Quinto año</h2>
-        <p>Diseño digital · Marca · Stop Motion · Arte digital</p>
-      </div>
-      <a href="https://drive.google.com/file/d/1XZcfWU3bOdAazrQHPqcaWv_eT_e2S_Vi/view" target="_blank" class="infografia-btn" style="color:var(--y5); border-color:var(--y5-mid)">
-        🗺 Infografía
-      </a>
+  <div class="special-section">
+    <div class="trim-label">Recursos adicionales</div>
+    <div class="special-grid">
+      <button class="special-card" onclick="openViewer('El Poder de la Repeticion','https://drive.google.com/file/d/1e5OhKjdVDpb_FXWZtYiflYUBAxdxNjwb/preview')">
+        <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
+        <h3>El Poder de la Repeticion</h3><p>Video educativo</p>
+        <span class="play-badge"><span class="play-icon" style="background:#E65100;color:#fff">&#9658;</span>Reproducir</span>
+      </button>
     </div>
+  </div>
+</section>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y5)">1er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Alfabetización Digital','https://drive.google.com/file/d/1abYtPMVSi-swcQW3dkk7QM81X3sZtKcV/preview')" style="border-top:3px solid var(--y5)">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
-          <h3>Alfabetización Digital</h3>
-          <p class="card-meta">Competencias digitales básicas</p>
-        </button>
-        <button class="card" onclick="openViewer('Formato Digital','https://drive.google.com/file/d/1JQ93DF1FCBZlVHgzs8eiBC7U8JT3i_DO/preview')" style="border-top:3px solid var(--y5)">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
-          <h3>Formato Digital</h3>
-          <p class="card-meta">Formatos y resolución</p>
-        </button>
-      </div>
+<!-- 5 ANO -->
+<section id="section-5" class="year-section">
+  <div class="year-hero">
+    <div class="year-badge" style="background:var(--y5-light);color:var(--y5)">5</div>
+    <div class="year-hero-text">
+      <h2>Quinto ano</h2>
+      <p>Diseno digital - Marca - Stop Motion - Arte digital</p>
     </div>
+    <a href="https://drive.google.com/file/d/1XZcfWU3bOdAazrQHPqcaWv_eT_e2S_Vi/view" target="_blank" class="infografia-btn" style="color:var(--y5);border-color:var(--y5-mid)">Infografia</a>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y5)">2do trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Marca 1','https://drive.google.com/file/d/1UUYl-G8vbCHgQ39ZKUHYpvBF456auslM/preview')" style="border-top:3px solid var(--y5-mid)">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
-          <h3>Marca — Parte 1</h3>
-          <p class="card-meta">Identidad visual y branding</p>
-        </button>
-        <button class="card" onclick="openViewer('Marca 2','https://drive.google.com/file/d/1TYuIM-fqN7NYygjp3YkAljyN5w4hIGEG/preview')" style="border-top:3px solid var(--y5-mid)">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
-          <h3>Marca — Parte 2</h3>
-          <p class="card-meta">Diseño de marca avanzado</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y5)">1er trimestre</div>
+    <div class="cards" id="cards-5-t1">
+      <button class="card" onclick="openViewer('Alfabetizacion Digital','https://drive.google.com/file/d/1abYtPMVSi-swcQW3dkk7QM81X3sZtKcV/preview')" style="border-top:3px solid var(--y5)">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
+        <h3>Alfabetizacion Digital</h3><p class="card-meta">Competencias digitales basicas</p>
+      </button>
+      <button class="card" onclick="openViewer('Formato Digital','https://drive.google.com/file/d/1JQ93DF1FCBZlVHgzs8eiBC7U8JT3i_DO/preview')" style="border-top:3px solid var(--y5)">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
+        <h3>Formato Digital</h3><p class="card-meta">Formatos y resolucion</p>
+      </button>
     </div>
+  </div>
 
-    <div class="trim-group">
-      <div class="trim-label" style="color:var(--y5)">3er trimestre</div>
-      <div class="cards">
-        <button class="card" onclick="openViewer('Cuadro Digital','https://drive.google.com/file/d/1rEPz3IiYbyDDYyKunBjNwpWnW06iIASv/preview')" style="border-top:3px solid var(--y5)">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
-          <h3>Cuadro Digital</h3>
-          <p class="card-meta">Creación de arte digital</p>
-        </button>
-        <button class="card" onclick="openViewer('Stop Motion','https://drive.google.com/file/d/1cQ3TpaUqk3fVl2dGVMbEuj4saAcNAJmI/preview')" style="border-top:3px solid var(--y5)">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
-          <h3>Stop Motion</h3>
-          <p class="card-meta">Técnica de animación cuadro a cuadro</p>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y5)">2do trimestre</div>
+    <div class="cards" id="cards-5-t2">
+      <button class="card" onclick="openViewer('Marca 1','https://drive.google.com/file/d/1UUYl-G8vbCHgQ39ZKUHYpvBF456auslM/preview')" style="border-top:3px solid var(--y5-mid)">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
+        <h3>Marca - Parte 1</h3><p class="card-meta">Identidad visual y branding</p>
+      </button>
+      <button class="card" onclick="openViewer('Marca 2','https://drive.google.com/file/d/1TYuIM-fqN7NYygjp3YkAljyN5w4hIGEG/preview')" style="border-top:3px solid var(--y5-mid)">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
+        <h3>Marca - Parte 2</h3><p class="card-meta">Diseno de marca avanzado</p>
+      </button>
     </div>
+  </div>
 
-    <div class="special-section">
-      <div class="trim-label">Recursos adicionales</div>
-      <div class="special-grid">
-        <button class="special-card" onclick="openViewer('Recursos TICs Digitales','https://drive.google.com/file/d/15x6mbmZvXj58bOqPxRqRCdGoNmJdSDvc/preview')">
-          <span class="card-type" style="background:var(--y5-light);color:var(--y5)">Recursos</span>
-          <h3>Recursos TICs Digitales</h3>
-          <p>Herramientas y plataformas</p>
-        </button>
-        <button class="special-card" onclick="openViewer('Evaluaciones — 5° año','https://drive.google.com/file/d/1Op2jlprmYZrUXY-nPkkKuevisOOrQUnW/preview')">
-          <span class="card-type" style="background:#FFF8E1;color:#F57F17">Evaluación</span>
-          <h3>Evaluaciones</h3>
-          <p>Criterios y rúbricas</p>
-        </button>
-        <button class="special-card video-card" onclick="openViewer('Crea tu Magia — Guía Stop Motion','https://drive.google.com/file/d/1GqgeQzayEsJnXjicHUYUwnzUmNcjnG2v/preview')">
-          <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
-          <h3>Crea tu Magia</h3>
-          <p>Guía Stop Motion</p>
-          <span class="play-badge">
-            <span class="play-icon" style="background:#E65100;color:#fff">▶</span>
-            Reproducir
-          </span>
-        </button>
-      </div>
+  <div class="trim-group">
+    <div class="trim-label" style="color:var(--y5)">3er trimestre</div>
+    <div class="cards" id="cards-5-t3">
+      <button class="card" onclick="openViewer('Cuadro Digital','https://drive.google.com/file/d/1rEPz3IiYbyDDYyKunBjNwpWnW06iIASv/preview')" style="border-top:3px solid var(--y5)">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
+        <h3>Cuadro Digital</h3><p class="card-meta">Creacion de arte digital</p>
+      </button>
+      <button class="card" onclick="openViewer('Stop Motion','https://drive.google.com/file/d/1cQ3TpaUqk3fVl2dGVMbEuj4saAcNAJmI/preview')" style="border-top:3px solid var(--y5)">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">PDF</span>
+        <h3>Stop Motion</h3><p class="card-meta">Animacion cuadro a cuadro</p>
+      </button>
     </div>
-  </section>
+  </div>
+
+  <div class="forms-section">
+    <div class="trim-label" style="color:#E65100">Evaluaciones por division</div>
+    <div class="forms-grid">
+      <a href="https://forms.gle/PMyTESKCUXc6yt6T8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Economia</span><h3>Alfabetizacion Digital</h3><p>5 ano 1 Economia</p></a>
+      <a href="https://forms.gle/wLJLX58ppZ2MmcfB8" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">3 div</span><h3>Alfabetizacion Digital</h3><p>5 ano 3 division</p></a>
+      <a href="https://forms.gle/DFpp7frLcYf4kXQm7" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Naturales</span><h3>Alfabetizacion Digital</h3><p>5 ano 1 Naturales</p></a>
+      <a href="https://forms.gle/su4JRQ7AW2QQV3nX6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Economia</span><h3>Formato Digital</h3><p>5 ano 1 Economia</p></a>
+      <a href="https://forms.gle/k928Xpfv2gNHDTx47" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">3 div</span><h3>Formato Digital</h3><p>5 ano 3 division</p></a>
+      <a href="https://forms.gle/znABnJkcQLX8u6yk6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Naturales</span><h3>Formato Digital</h3><p>5 ano 1 Naturales</p></a>
+      <a href="https://forms.gle/mvGg19Xmjydr6u7h6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Economia</span><h3>Marca 1</h3><p>5 ano 1 Economia</p></a>
+      <a href="https://forms.gle/JCyfcVrUqrSuKbUbA" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">3 div</span><h3>Marca 1</h3><p>5 ano 3 division</p></a>
+      <a href="https://forms.gle/pbc5fAqw7hgKhYHx5" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Naturales</span><h3>Marca 1</h3><p>5 ano 1 Naturales</p></a>
+      <a href="https://forms.gle/BNyHeX3vpC92mtF69" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Economia</span><h3>Marca 2</h3><p>5 ano 1 Economia</p></a>
+      <a href="https://forms.gle/cHgwBSUXewPatzP46" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">3 div</span><h3>Marca 2</h3><p>5 ano 3 division</p></a>
+      <a href="https://forms.gle/eMrxSW87GkodxJQj6" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">Naturales</span><h3>Marca 2</h3><p>5 ano 1 Naturales</p></a>
+    </div>
+  </div>
+
+  <div class="special-section">
+    <div class="trim-label">Recursos adicionales</div>
+    <div class="special-grid">
+      <button class="special-card" onclick="openViewer('Recursos TICs Digitales','https://drive.google.com/file/d/15x6mbmZvXj58bOqPxRqRCdGoNmJdSDvc/preview')">
+        <span class="card-type" style="background:var(--y5-light);color:var(--y5)">Recursos</span>
+        <h3>Recursos TICs Digitales</h3><p>Herramientas y plataformas</p>
+      </button>
+      <button class="special-card" onclick="openViewer('Crea tu Magia - Stop Motion','https://drive.google.com/file/d/1GqgeQzayEsJnXjicHUYUwnzUmNcjnG2v/preview')">
+        <span class="card-type" style="background:#FFF3E0;color:#E65100">Video</span>
+        <h3>Crea tu Magia</h3><p>Guia Stop Motion</p>
+        <span class="play-badge"><span class="play-icon" style="background:#E65100;color:#fff">&#9658;</span>Reproducir</span>
+      </button>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -814,44 +606,267 @@
   <div id="viewer-box">
     <div id="viewer-header">
       <span id="viewer-title">Documento</span>
-      <a id="viewer-open-link" href="#" target="_blank">Abrir en Drive ↗</a>
-      <button id="viewer-close" onclick="closeViewer()">✕</button>
+      <a id="viewer-open-link" href="#" target="_blank">Abrir en Drive</a>
+      <button id="viewer-close" onclick="closeViewer()">&#10005;</button>
     </div>
     <iframe id="viewer-frame" src="" allowfullscreen></iframe>
   </div>
 </div>
 
+<!-- ADMIN PANEL -->
+<div id="admin-overlay" onclick="closeAdminOutside(event)">
+  <div id="admin-box">
+    <div id="admin-header">
+      <h2>Panel de administracion</h2>
+      <button id="admin-close" onclick="closeAdmin()">&#10005;</button>
+    </div>
+    <div id="admin-body">
+      <!-- LOGIN -->
+      <div id="admin-login" class="admin-login">
+        <p>Ingresa la clave para acceder al panel</p>
+        <input type="password" id="admin-pass" placeholder="Clave de acceso" onkeydown="if(event.key==='Enter')checkPass()">
+        <br>
+        <button class="btn-primary" onclick="checkPass()">Ingresar</button>
+        <div id="admin-err" class="admin-error" style="display:none">Clave incorrecta</div>
+      </div>
+
+      <!-- PANEL CONTENT -->
+      <div id="admin-content" style="display:none">
+        <div class="admin-notice">Los cambios que hagas aqui se guardan en este navegador. Para que aparezcan en el sitio publicado, copia el codigo HTML actualizado desde abajo y subilo a GitHub.</div>
+
+        <!-- AGREGAR CUADERNO -->
+        <div class="admin-section">
+          <h3>Agregar nuevo cuaderno (PDF)</h3>
+          <div class="admin-form">
+            <div class="admin-row">
+              <div>
+                <label>Ano</label>
+                <select id="add-year">
+                  <option value="1">1 ano</option>
+                  <option value="2">2 ano</option>
+                  <option value="3">3 ano</option>
+                  <option value="5">5 ano</option>
+                </select>
+              </div>
+              <div>
+                <label>Trimestre</label>
+                <select id="add-trim">
+                  <option value="t1">1er trimestre</option>
+                  <option value="t2">2do trimestre</option>
+                  <option value="t3">3er trimestre</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label>Titulo del cuaderno</label>
+              <input type="text" id="add-title" placeholder="Ej: La Perspectiva">
+            </div>
+            <div>
+              <label>Descripcion breve</label>
+              <input type="text" id="add-desc" placeholder="Ej: Perspectiva con dos puntos de fuga">
+            </div>
+            <div>
+              <label>URL de Google Drive (link de vista previa)</label>
+              <input type="text" id="add-url" placeholder="https://drive.google.com/file/d/.../preview">
+            </div>
+            <button class="btn-success" onclick="addCard()">Agregar cuaderno</button>
+          </div>
+        </div>
+
+        <!-- AGREGAR FORM -->
+        <div class="admin-section">
+          <h3>Agregar evaluacion (Google Form)</h3>
+          <div class="admin-form">
+            <div class="admin-row">
+              <div>
+                <label>Ano</label>
+                <select id="fadd-year">
+                  <option value="1">1 ano</option>
+                  <option value="2">2 ano</option>
+                  <option value="3">3 ano</option>
+                  <option value="5">5 ano</option>
+                </select>
+              </div>
+              <div>
+                <label>Division</label>
+                <input type="text" id="fadd-div" placeholder="Ej: 1 div / Economia">
+              </div>
+            </div>
+            <div>
+              <label>Tema evaluado</label>
+              <input type="text" id="fadd-title" placeholder="Ej: El Color">
+            </div>
+            <div>
+              <label>URL del Google Form</label>
+              <input type="text" id="fadd-url" placeholder="https://forms.gle/...">
+            </div>
+            <button class="btn-success" onclick="addForm()">Agregar evaluacion</button>
+          </div>
+        </div>
+
+        <!-- ITEMS AGREGADOS -->
+        <div class="admin-section" id="added-list-section" style="display:none">
+          <h3>Elementos agregados en esta sesion</h3>
+          <div class="admin-list" id="added-list"></div>
+        </div>
+
+        <div class="admin-section">
+          <h3>Como actualizar el sitio</h3>
+          <div style="font-size:13px;color:var(--muted);line-height:1.7">
+            <p>1. Agrega los elementos desde este panel</p>
+            <p>2. Ve a tu repositorio en GitHub</p>
+            <p>3. Edita el archivo index.html</p>
+            <p>4. Busca la seccion del ano correspondiente y agrega el bloque HTML que se muestra abajo de cada elemento agregado</p>
+            <p>5. Guarda los cambios (Commit changes)</p>
+            <p>6. El sitio se actualiza automaticamente en 1-2 minutos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-  function showYear(year, btn) {
-    document.querySelectorAll('.year-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('section-' + year).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+const ADMIN_PASS = 'Artistic@GMB7';
+let addedItems = [];
+
+function showYear(year, btn) {
+  document.querySelectorAll('.year-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + year).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openViewer(title, previewUrl) {
+  document.getElementById('viewer-title').textContent = title;
+  document.getElementById('viewer-frame').src = previewUrl;
+  document.getElementById('viewer-open-link').href = previewUrl.replace('/preview', '/view');
+  document.getElementById('viewer-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeViewer() {
+  document.getElementById('viewer-overlay').classList.remove('open');
+  document.getElementById('viewer-frame').src = '';
+  document.body.style.overflow = '';
+}
+function closeViewerOutside(e) {
+  if (e.target === document.getElementById('viewer-overlay')) closeViewer();
+}
+
+function openAdmin() {
+  document.getElementById('admin-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('admin-pass').value = '';
+  document.getElementById('admin-err').style.display = 'none';
+  document.getElementById('admin-login').style.display = 'block';
+  document.getElementById('admin-content').style.display = 'none';
+}
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeAdminOutside(e) {
+  if (e.target === document.getElementById('admin-overlay')) closeAdmin();
+}
+function checkPass() {
+  const val = document.getElementById('admin-pass').value;
+  if (val === ADMIN_PASS) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+  } else {
+    document.getElementById('admin-err').style.display = 'block';
+  }
+}
+
+function addCard() {
+  const year = document.getElementById('add-year').value;
+  const trim = document.getElementById('add-trim').value;
+  const title = document.getElementById('add-title').value.trim();
+  const desc = document.getElementById('add-desc').value.trim();
+  const url = document.getElementById('add-url').value.trim();
+  if (!title || !url) { alert('Completa el titulo y la URL'); return; }
+
+  const colors = { '1': 'var(--y1)', '2': 'var(--y2)', '3': 'var(--y3)', '5': 'var(--y5)' };
+  const lights = { '1': 'var(--y1-light)', '2': 'var(--y2-light)', '3': 'var(--y3-light)', '5': 'var(--y5-light)' };
+  const color = colors[year];
+  const light = lights[year];
+
+  const container = document.getElementById('cards-' + year + '-' + trim);
+  if (!container) { alert('Seccion no encontrada'); return; }
+
+  const btn = document.createElement('button');
+  btn.className = 'card';
+  btn.style.cssText = 'border-top:3px solid ' + color;
+  btn.onclick = () => openViewer(title, url);
+  btn.innerHTML = '<span class="card-type" style="background:' + light + ';color:' + color + '">PDF</span><h3>' + title + '</h3><p class="card-meta">' + desc + '</p>';
+  container.appendChild(btn);
+
+  const previewUrl = url.includes('/preview') ? url : url.replace('/view', '/preview');
+  const htmlBlock = '<button class="card" onclick="openViewer(\'' + title + '\',\'' + previewUrl + '\')" style="border-top:3px solid ' + color + '"><span class="card-type" style="background:' + light + ';color:' + color + '">PDF</span><h3>' + title + '</h3><p class="card-meta">' + desc + '</p></button>';
+
+  addedItems.push({ type: 'card', label: year + ' ano - ' + title, html: htmlBlock });
+  renderAddedList();
+
+  document.getElementById('add-title').value = '';
+  document.getElementById('add-desc').value = '';
+  document.getElementById('add-url').value = '';
+}
+
+function addForm() {
+  const year = document.getElementById('fadd-year').value;
+  const div = document.getElementById('fadd-div').value.trim();
+  const title = document.getElementById('fadd-title').value.trim();
+  const url = document.getElementById('fadd-url').value.trim();
+  if (!title || !url) { alert('Completa el titulo y la URL'); return; }
+
+  const section = document.getElementById('section-' + year);
+  let grid = section.querySelector('.forms-grid');
+  if (!grid) {
+    const fs = document.createElement('div');
+    fs.className = 'forms-section';
+    fs.innerHTML = '<div class="trim-label" style="color:#E65100">Evaluaciones por division</div><div class="forms-grid"></div>';
+    section.querySelector('.special-section').before(fs);
+    grid = fs.querySelector('.forms-grid');
   }
 
-  function openViewer(title, previewUrl) {
-    document.getElementById('viewer-title').textContent = title;
-    document.getElementById('viewer-frame').src = previewUrl;
-    const driveUrl = previewUrl.replace('/preview', '/view');
-    document.getElementById('viewer-open-link').href = driveUrl;
-    document.getElementById('viewer-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+  const a = document.createElement('a');
+  a.href = url; a.target = '_blank'; a.className = 'form-card';
+  a.innerHTML = '<span class="form-tag">Form</span><span class="div-badge">' + div + '</span><h3>' + title + '</h3><p>Evaluacion ' + div + '</p>';
+  grid.appendChild(a);
 
-  function closeViewer() {
-    document.getElementById('viewer-overlay').classList.remove('open');
-    document.getElementById('viewer-frame').src = '';
-    document.body.style.overflow = '';
-  }
+  const htmlBlock = '<a href="' + url + '" target="_blank" class="form-card"><span class="form-tag">Form</span><span class="div-badge">' + div + '</span><h3>' + title + '</h3><p>Evaluacion ' + div + '</p></a>';
 
-  function closeViewerOutside(e) {
-    if (e.target === document.getElementById('viewer-overlay')) closeViewer();
-  }
+  addedItems.push({ type: 'form', label: year + ' ano - ' + title + ' (' + div + ')', html: htmlBlock });
+  renderAddedList();
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeViewer();
-  });
+  document.getElementById('fadd-div').value = '';
+  document.getElementById('fadd-title').value = '';
+  document.getElementById('fadd-url').value = '';
+}
+
+function renderAddedList() {
+  const section = document.getElementById('added-list-section');
+  const list = document.getElementById('added-list');
+  section.style.display = addedItems.length ? 'block' : 'none';
+  list.innerHTML = addedItems.map((item, i) =>
+    '<div class="admin-item"><span>' + item.label + '</span><button class="btn-del" onclick="removeItem(' + i + ')">Quitar</button></div>' +
+    '<details style="font-size:11px;margin-bottom:8px;"><summary style="cursor:pointer;color:var(--muted);padding:4px 0">Ver bloque HTML para GitHub</summary><pre style="background:var(--bg);padding:8px;border-radius:6px;overflow-x:auto;font-size:10px;margin-top:4px;white-space:pre-wrap">' + escHtml(item.html) + '</pre></details>'
+  ).join('');
+}
+
+function removeItem(i) {
+  addedItems.splice(i, 1);
+  renderAddedList();
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeViewer(); closeAdmin(); }
+});
 </script>
 </body>
 </html>
