@@ -248,18 +248,60 @@ main{padding-top:58px;}
 }
 .forms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px;}
 .fc{
-  background:var(--white);border:1px solid var(--border);
+  background:var(--white);border:1.5px solid var(--border);
   border-radius:var(--radius-l);padding:12px 14px;
   transition:transform 0.2s var(--spring),box-shadow 0.2s,border-color 0.2s;
   text-decoration:none;display:flex;flex-direction:column;gap:5px;
+  position:relative;overflow:hidden;
 }
-.fc:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.09);border-color:#f97316;}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.fc:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.09);}
 .fc-top{display:flex;align-items:center;gap:5px;}
-.fc-tag{font-size:0.58rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;background:#fff3e0;color:#c55a00;padding:2px 7px;border-radius:4px;flex-shrink:0;}
-.fc-div{font-size:0.58rem;font-weight:600;background:var(--bg2);color:var(--ink4);padding:2px 7px;border-radius:4px;flex-shrink:0;}
+.fc-tag{font-size:0.58rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:4px;flex-shrink:0;}
+.fc-div{font-size:0.58rem;font-weight:600;padding:2px 7px;border-radius:4px;flex-shrink:0;}
 .fc-name{font-size:0.83rem;font-weight:600;}
 .fc-sub{font-size:0.68rem;color:var(--ink4);}
-.fc-arr{font-size:0.68rem;font-weight:700;color:#c55a00;margin-top:2px;}
+.fc-arr{font-size:0.68rem;font-weight:700;margin-top:2px;}
+
+/* DIVISION COLOR SYSTEM */
+.fc.d-1{border-color:rgba(26,86,160,0.3);background:#f8fbff;}
+.fc.d-1::before{background:var(--c1);}
+.fc.d-1:hover{border-color:var(--c1);box-shadow:0 12px 28px rgba(26,86,160,0.12);}
+.fc.d-1 .fc-tag{background:var(--c1l);color:var(--c1);}
+.fc.d-1 .fc-div{background:var(--c1l);color:var(--c1);}
+.fc.d-1 .fc-arr{color:var(--c1);}
+
+.fc.d-2{border-color:rgba(13,110,74,0.3);background:#f6fdf9;}
+.fc.d-2::before{background:var(--c2);}
+.fc.d-2:hover{border-color:var(--c2);box-shadow:0 12px 28px rgba(13,110,74,0.12);}
+.fc.d-2 .fc-tag{background:var(--c2l);color:var(--c2);}
+.fc.d-2 .fc-div{background:var(--c2l);color:var(--c2);}
+.fc.d-2 .fc-arr{color:var(--c2);}
+
+.fc.d-3{border-color:rgba(107,51,179,0.3);background:#fdf9ff;}
+.fc.d-3::before{background:var(--c5);}
+.fc.d-3:hover{border-color:var(--c5);box-shadow:0 12px 28px rgba(107,51,179,0.12);}
+.fc.d-3 .fc-tag{background:var(--c5l);color:var(--c5);}
+.fc.d-3 .fc-div{background:var(--c5l);color:var(--c5);}
+.fc.d-3 .fc-arr{color:var(--c5);}
+
+/* NOTAS DEL PROFESOR */
+.notas-banner{
+  background:var(--ink);border-radius:var(--radius-l);
+  padding:1.25rem 1.5rem;margin-bottom:2.5rem;
+  display:flex;align-items:center;gap:1.25rem;
+  cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+  text-align:left;width:100%;position:relative;overflow:hidden;border:none;
+}
+.notas-banner::before{content:'';position:absolute;top:-50px;right:-50px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.notas-banner:hover{opacity:0.9;transform:translateY(-2px);}
+.notas-icon{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.notas-body{flex:1;}
+.notas-label{font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px;}
+.notas-title{font-family:var(--f1);font-style:italic;font-size:1rem;font-weight:600;color:#fff;margin-bottom:2px;}
+.notas-sub{font-size:0.75rem;color:rgba(255,255,255,0.45);line-height:1.5;}
+.notas-arr{font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.4);flex-shrink:0;transition:color 0.2s,transform 0.2s;display:inline-block;}
+.notas-banner:hover .notas-arr{color:#fff;transform:translateX(5px);}
 
 /* RECURSOS */
 .rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;}
@@ -473,6 +515,15 @@ main{padding-top:58px;}
     </div>
   </div>
   <div class="cc-wrap">
+    <button class="notas-banner" onclick="openV('Notas del Profesor — 1° curso','https://docs.google.com/document/d/1xoJGr5lgJGl7KQTXPgG9DemhupKku3kRzBpo88joa8Y/preview')">
+      <div class="notas-icon">📋</div>
+      <div class="notas-body">
+        <div class="notas-label">Comunicado docente</div>
+        <div class="notas-title">Notas del Profesor</div>
+        <div class="notas-sub">Avisos, fechas importantes y novedades del 1° curso</div>
+      </div>
+      <span class="notas-arr">→</span>
+    </button>
     <div class="trim">
       <div class="trim-hdr"><span class="trim-pill">1° Trimestre</span><div class="trim-line"></div></div>
       <div class="cuad-grid">
@@ -531,18 +582,18 @@ main{padding-top:58px;}
     <div class="trim">
       <div class="eval-hdr"><span class="eval-pill">Evaluaciones por división</span><div class="trim-line"></div></div>
       <div class="forms-grid">
-        <a href="https://forms.gle/bdRaiCXRTJWA8CMA7" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">El Punto</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/FDDQbGN4PYgTweWa9" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">El Punto</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/KDoVKvKFBQB3nNVS7" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">La Línea</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/uLu1CCiAS7RqaYXq6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">La Línea</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/bD8VNeYJLdJSzxF38" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">La Forma</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/xQTQwZBkX5oLfn8p8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">La Forma</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/bPpQ7YWmgDXQBfuE9" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">El Ritmo</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/Unejh5hdh5uyJSxV9" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">El Ritmo</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/UU2TBnfsKYJHmvqo6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">La Textura</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/LAYAAa53Je6eGduQ7" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">La Textura</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/NQqmbfNkdZeZ2Nij8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Punto de Fuga</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/9H5HSkRxNCnAuZak6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Punto de Fuga</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/bdRaiCXRTJWA8CMA7" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">El Punto</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/FDDQbGN4PYgTweWa9" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">El Punto</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/KDoVKvKFBQB3nNVS7" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">La Línea</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/uLu1CCiAS7RqaYXq6" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">La Línea</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/bD8VNeYJLdJSzxF38" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">La Forma</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/xQTQwZBkX5oLfn8p8" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">La Forma</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/bPpQ7YWmgDXQBfuE9" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">El Ritmo</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/Unejh5hdh5uyJSxV9" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">El Ritmo</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/UU2TBnfsKYJHmvqo6" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">La Textura</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/LAYAAa53Je6eGduQ7" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">La Textura</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/NQqmbfNkdZeZ2Nij8" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Punto de Fuga</div><div class="fc-sub">1° división</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/9H5HSkRxNCnAuZak6" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Punto de Fuga</div><div class="fc-sub">2° división</div><div class="fc-arr">Completar →</div></a>
       </div>
     </div>
     <div class="trim">
@@ -571,6 +622,15 @@ main{padding-top:58px;}
     </div>
   </div>
   <div class="cc-wrap">
+    <button class="notas-banner" onclick="openV('Notas del Profesor — 1° curso','https://docs.google.com/document/d/1xoJGr5lgJGl7KQTXPgG9DemhupKku3kRzBpo88joa8Y/preview')">
+      <div class="notas-icon">📋</div>
+      <div class="notas-body">
+        <div class="notas-label">Comunicado docente</div>
+        <div class="notas-title">Notas del Profesor</div>
+        <div class="notas-sub">Avisos, fechas importantes y novedades del 1° curso</div>
+      </div>
+      <span class="notas-arr">→</span>
+    </button>
     <div class="trim">
       <div class="trim-hdr"><span class="trim-pill">1° Trimestre</span><div class="trim-line"></div></div>
       <div class="cuad-grid">
@@ -621,11 +681,11 @@ main{padding-top:58px;}
     <div class="trim">
       <div class="eval-hdr"><span class="eval-pill">Evaluaciones por división</span><div class="trim-line"></div></div>
       <div class="forms-grid">
-        <a href="https://forms.gle/rU2C9SJ8FthY7SHz9" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Figura y Fondo</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/3rEVpu3W4mQKCtbZ8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Collage</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/9ovfxXeN6WBU6jUt7" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Plano y Volumen</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/AHVd6NXrHFqNh12L9" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Luz y Sombra</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/W3VF2zgaoTtsVReR6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Perspectiva</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/rU2C9SJ8FthY7SHz9" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Figura y Fondo</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/3rEVpu3W4mQKCtbZ8" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Collage</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/9ovfxXeN6WBU6jUt7" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Plano y Volumen</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/AHVd6NXrHFqNh12L9" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Luz y Sombra</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/W3VF2zgaoTtsVReR6" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Perspectiva</div><div class="fc-arr">Completar →</div></a>
       </div>
     </div>
     <div class="trim">
@@ -656,6 +716,15 @@ main{padding-top:58px;}
     </div>
   </div>
   <div class="cc-wrap">
+    <button class="notas-banner" onclick="openV('Notas del Profesor — 1° curso','https://docs.google.com/document/d/1xoJGr5lgJGl7KQTXPgG9DemhupKku3kRzBpo88joa8Y/preview')">
+      <div class="notas-icon">📋</div>
+      <div class="notas-body">
+        <div class="notas-label">Comunicado docente</div>
+        <div class="notas-title">Notas del Profesor</div>
+        <div class="notas-sub">Avisos, fechas importantes y novedades del 1° curso</div>
+      </div>
+      <span class="notas-arr">→</span>
+    </button>
     <div class="trim">
       <div class="trim-hdr"><span class="trim-pill">1° Trimestre</span><div class="trim-line"></div></div>
       <div class="cuad-grid">
@@ -714,18 +783,18 @@ main{padding-top:58px;}
     <div class="trim">
       <div class="eval-hdr"><span class="eval-pill">Evaluaciones por división</span><div class="trim-line"></div></div>
       <div class="forms-grid">
-        <a href="https://forms.gle/R1PbFa5BHgXWmUjC7" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Simetría</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/EB2DBDubLrHjPSKx6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Simetría</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/hoQfT7qcvYVgKkiK8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Red Modular</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/jqZWgffrgAexAPBA8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Red Modular</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/zMYgPC6kdiLu7jYaA" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Rostro Humano</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/eVBAFaRwn1ftAanp6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Rostro Humano</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/UoNGcpcU9vcsogx28" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Cuerpo Humano</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/GZBeSajgBYPfjCgC8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Cuerpo Humano</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdH-QycrdSXDLpSIy8o5GMyIH0r9s-s0VbEHTSMQ1LgI59C5g/viewform" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Tangram</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbMfby_KViBNoTZVVZDxElofPT-KqS_AiVqrp8S9W5BtkV8g/viewform" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Tangram</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/T2bACgogftAJSv7D9" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Percepción</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/rdN3DHEVrFHK2kgq5" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Percepción</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/R1PbFa5BHgXWmUjC7" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Simetría</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/EB2DBDubLrHjPSKx6" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Simetría</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/hoQfT7qcvYVgKkiK8" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Red Modular</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/jqZWgffrgAexAPBA8" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Red Modular</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/zMYgPC6kdiLu7jYaA" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Rostro Humano</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/eVBAFaRwn1ftAanp6" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Rostro Humano</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/UoNGcpcU9vcsogx28" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Cuerpo Humano</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/GZBeSajgBYPfjCgC8" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Cuerpo Humano</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdH-QycrdSXDLpSIy8o5GMyIH0r9s-s0VbEHTSMQ1LgI59C5g/viewform" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Tangram</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbMfby_KViBNoTZVVZDxElofPT-KqS_AiVqrp8S9W5BtkV8g/viewform" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Tangram</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/T2bACgogftAJSv7D9" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">1° div</span></div><div class="fc-name">Percepción</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/rdN3DHEVrFHK2kgq5" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">2° div</span></div><div class="fc-name">Percepción</div><div class="fc-arr">Completar →</div></a>
       </div>
     </div>
     <div class="trim">
@@ -754,6 +823,15 @@ main{padding-top:58px;}
     </div>
   </div>
   <div class="cc-wrap">
+    <button class="notas-banner" onclick="openV('Notas del Profesor — 1° curso','https://docs.google.com/document/d/1xoJGr5lgJGl7KQTXPgG9DemhupKku3kRzBpo88joa8Y/preview')">
+      <div class="notas-icon">📋</div>
+      <div class="notas-body">
+        <div class="notas-label">Comunicado docente</div>
+        <div class="notas-title">Notas del Profesor</div>
+        <div class="notas-sub">Avisos, fechas importantes y novedades del 1° curso</div>
+      </div>
+      <span class="notas-arr">→</span>
+    </button>
     <div class="trim">
       <div class="trim-hdr"><span class="trim-pill">1° Trimestre</span><div class="trim-line"></div></div>
       <div class="cuad-grid">
@@ -796,18 +874,18 @@ main{padding-top:58px;}
     <div class="trim">
       <div class="eval-hdr"><span class="eval-pill">Evaluaciones por división</span><div class="trim-line"></div></div>
       <div class="forms-grid">
-        <a href="https://forms.gle/PMyTESKCUXc6yt6T8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Alfabetización Digital</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/wLJLX58ppZ2MmcfB8" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Alfabetización Digital</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/DFpp7frLcYf4kXQm7" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Alfabetización Digital</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/su4JRQ7AW2QQV3nX6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Formato Digital</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/k928Xpfv2gNHDTx47" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Formato Digital</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/znABnJkcQLX8u6yk6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Formato Digital</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/mvGg19Xmjydr6u7h6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Marca 1</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/JCyfcVrUqrSuKbUbA" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Marca 1</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/pbc5fAqw7hgKhYHx5" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Marca 1</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/BNyHeX3vpC92mtF69" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Marca 2</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/cHgwBSUXewPatzP46" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Marca 2</div><div class="fc-arr">Completar →</div></a>
-        <a href="https://forms.gle/eMrxSW87GkodxJQj6" target="_blank" class="fc"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Marca 2</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/PMyTESKCUXc6yt6T8" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Alfabetización Digital</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/wLJLX58ppZ2MmcfB8" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Alfabetización Digital</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/DFpp7frLcYf4kXQm7" target="_blank" class="fc d-3"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Alfabetización Digital</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/su4JRQ7AW2QQV3nX6" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Formato Digital</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/k928Xpfv2gNHDTx47" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Formato Digital</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/znABnJkcQLX8u6yk6" target="_blank" class="fc d-3"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Formato Digital</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/mvGg19Xmjydr6u7h6" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Marca 1</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/JCyfcVrUqrSuKbUbA" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Marca 1</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/pbc5fAqw7hgKhYHx5" target="_blank" class="fc d-3"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Marca 1</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/BNyHeX3vpC92mtF69" target="_blank" class="fc d-1"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Economía</span></div><div class="fc-name">Marca 2</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/cHgwBSUXewPatzP46" target="_blank" class="fc d-2"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">3° div</span></div><div class="fc-name">Marca 2</div><div class="fc-arr">Completar →</div></a>
+        <a href="https://forms.gle/eMrxSW87GkodxJQj6" target="_blank" class="fc d-3"><div class="fc-top"><span class="fc-tag">Form</span><span class="fc-div">Naturales</span></div><div class="fc-name">Marca 2</div><div class="fc-arr">Completar →</div></a>
       </div>
     </div>
     <div class="trim">
